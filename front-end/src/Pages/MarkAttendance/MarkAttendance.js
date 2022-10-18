@@ -8,9 +8,21 @@ const MarkAttendance = (props) => {
   const date = new Date();
   const token = localStorage.getItem("token");
   const [mark, setmark] = useState([]);
+  const [isMarkedData, setIsMarkedData] = useState(false);
   const fetchdatelist = async () => {
     const response = await fetch(
-      "http://localhost:8080/api/v1/attendance?month=10&year=2022",
+      `http://localhost:8080/api/v1/attendance?month=${date}&year=2022`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    const isMarked = await fetch(
+      "http://localhost:8080/api/v1/attendance/today",
       {
         method: "GET",
         headers: {
@@ -22,6 +34,8 @@ const MarkAttendance = (props) => {
     );
     const data = await response.json();
     setmark(data.content);
+    const tempMarkData = await isMarked.json();
+    setIsMarkedData(tempMarkData);
   };
 
   useEffect(() => {
@@ -46,6 +60,7 @@ const MarkAttendance = (props) => {
       },
     });
     setmark([...mark, today]);
+    setIsMarkedData(true);
   };
   return (
     <div>
@@ -60,6 +75,7 @@ const MarkAttendance = (props) => {
       <br />
       <br />
       <button
+        disabled={isMarkedData}
         className={"btn btn-primary"}
         type="submit"
         onClick={attendanceHandler}

@@ -84,6 +84,10 @@ public class EmployeeController {
     public ResponseEntity<Boolean> hasSubmittedReport(Principal principal){
         return new ResponseEntity<>(employeeService.getReportToday(findIdByPrinciple(principal)),HttpStatus.OK);
     }
+    @GetMapping("/attendance/today") //for both manager and rep
+    public ResponseEntity<Boolean> hasMarkedAttendance(Principal principal){
+        return new ResponseEntity<>(employeeService.getAttendanceToday(findIdByPrinciple(principal)),HttpStatus.OK);
+    }
 
     @GetMapping({"/representatives", "/managers"})//only for manager and admins
     public ResponseEntity<Page<EmployeeDTO>> getSubordinates(Principal principal,

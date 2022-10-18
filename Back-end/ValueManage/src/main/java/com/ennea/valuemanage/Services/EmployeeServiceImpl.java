@@ -142,4 +142,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Page<EmployeeDTO> getSubordinates(Long id,PageRequest pageRequest) {
         return employeeRepository.findAllSubordinates(id,pageRequest).map(employeeMapper::employeeToEmployeeDTO);
     }
+
+    @Override
+    public Boolean getAttendanceToday(Long id) {
+        return employeeRepository.getTodaysAttendance(id,LocalDate.now()).isPresent();
+    }
 }

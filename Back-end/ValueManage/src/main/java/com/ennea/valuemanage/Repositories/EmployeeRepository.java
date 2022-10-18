@@ -1,5 +1,6 @@
 package com.ennea.valuemanage.Repositories;
 
+import com.ennea.valuemanage.Model.Attendance;
 import com.ennea.valuemanage.Model.Customer;
 import com.ennea.valuemanage.Model.Employee;
 import com.ennea.valuemanage.Model.Report;
@@ -29,4 +30,6 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
     @Query("select employee from Employee employee where employee.supervisor.id=?1")
     Page<Employee> findAllSubordinates(Long id,PageRequest pageRequest);
 
+    @Query("select attendance from Attendance attendance where attendance.employee.id=?1 and attendance.presenceDate=?2")
+    Optional<Attendance> getTodaysAttendance(Long id, LocalDate now);
 }

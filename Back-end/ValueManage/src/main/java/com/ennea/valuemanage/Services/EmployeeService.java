@@ -27,4 +27,6 @@ public interface EmployeeService {
     Boolean getReportToday(Long id);
 
     Page<EmployeeDTO> getSubordinates(Long id,PageRequest pageRequest);
+
+    Boolean getAttendanceToday(Long id);
 }
