@@ -1,0 +1,22 @@
+.div{
+    padding: 0;
+}
+.crm-login-form{
+}
+.username-label{
+    font-size: x-large;
+}
+.password-label{
+    font-size: x-large;
+}
+.password-textbox{
+    height: 2rem;
+    width:25%;
+}
+.username-textbox{
+    height: 2rem;
+    width:25%;
+}
+.mylogin{
+    width:15%
+}

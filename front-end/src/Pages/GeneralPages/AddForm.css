@@ -1,0 +1,23 @@
+th,
+td {
+  padding: 15px;
+}
+.new-retailer-table {
+  width: 50%;
+  height: 75%;
+}
+.new-form-header {
+  font-size: xx-large;
+  font-weight: 500;
+  color: black;
+}
+input {
+  width: 80%;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}

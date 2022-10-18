@@ -1,0 +1,11 @@
+.Appdiv{
+  padding: 0px;
+  display: flex;
+}
+div{
+  padding: 0px;
+}
+.Appdiv >.route-div{
+  flex:1;
+  padding: 0;
+}

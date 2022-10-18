@@ -1,0 +1,13 @@
+.crmNavBar{
+    list-style-type: none;
+    list-style-position: outside;
+    padding-left: 0;
+
+}
+.navdiv {
+    background-color: #0c56d0;
+    min-height:100vh;
+    height: fill;
+    width: 20%;
+    padding: 0px;
+}
