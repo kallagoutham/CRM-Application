@@ -5,13 +5,13 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import "./Calendar.css";
 const MarkAttendance = (props) => {
-  const date = new Date();
+  const [date,setdate] = useState(new Date());
   const token = localStorage.getItem("token");
   const [mark, setmark] = useState([]);
   const [isMarkedData, setIsMarkedData] = useState(false);
   const fetchdatelist = async () => {
     const response = await fetch(
-      `http://localhost:8080/api/v1/attendance?month=${date}&year=2022`,
+      `http://localhost:8080/api/v1/attendance?month=${date.getMonth()+1}&year=${date.getFullYear()}`,
       {
         method: "GET",
         headers: {
@@ -40,17 +40,18 @@ const MarkAttendance = (props) => {
 
   useEffect(() => {
     fetchdatelist();
-  }, []);
+  }, [date]);
   const attendanceHandler = (event) => {
     event.preventDefault();
+    const tod=new Date();
     const today =
-      date.getFullYear() +
+      tod.getFullYear() +
       "-" +
-      (date.getMonth() > 8
-        ? date.getMonth() + 1
-        : "0" + (date.getMonth() + 1)) +
+      (tod.getMonth() > 8
+        ? tod.getMonth() + 1
+        : "0" + (tod.getMonth() + 1)) +
       "-" +
-      (date.getDate() > 9 ? date.getDate() : "0" + date.getDate());
+      (tod.getDate() > 9 ? tod.getDate() : "0" + tod.getDate());
     fetch("http://localhost:8080/api/v1/attendance", {
       method: "post",
       headers: {
@@ -71,6 +72,9 @@ const MarkAttendance = (props) => {
             return "highlight";
           }
         }}
+        onActiveStartDateChange={({ activeStartDate}) =>
+          setdate(activeStartDate)
+        }
       />
       <br />
       <br />
